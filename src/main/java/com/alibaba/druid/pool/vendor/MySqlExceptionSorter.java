@@ -15,14 +15,12 @@
  */
 package com.alibaba.druid.pool.vendor;
 
-import com.alibaba.druid.pool.ExceptionSorter;
-
-import java.io.IOException;
-import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.sql.SQLException;
 import java.sql.SQLRecoverableException;
 import java.util.Properties;
+
+import com.alibaba.druid.pool.ExceptionSorter;
 
 public class MySqlExceptionSorter implements ExceptionSorter {
 
@@ -89,9 +87,9 @@ public class MySqlExceptionSorter implements ExceptionSorter {
             final String errorText = message.toUpperCase();
 
             if ((errorCode == 0 && (errorText.contains("COMMUNICATIONS LINK FAILURE")) //
-            || errorText.contains("COULD NOT CREATE CONNECTION")) //
-                || errorText.contains("NO DATASOURCE") //
-                || errorText.contains("NO ALIVE DATASOURCE")) {
+                    || errorText.contains("COULD NOT CREATE CONNECTION")) //
+                    || errorText.contains("NO DATASOURCE") //
+                    || errorText.contains("NO ALIVE DATASOURCE")) {
                 return true;
             }
         }
